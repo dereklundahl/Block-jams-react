@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import albumData from './../data/albums';
 
 class Album extends Component {
@@ -12,7 +11,7 @@ class Album extends Component {
   });
 
   this.state = {
-  album: album
+    album: album
   };
 }
 
@@ -24,9 +23,18 @@ class Album extends Component {
           <div className="album-details">
             <h1 id="album-title">{this.state.album.title}</h1>
             <h2 className="artist">{this.state.album.artist}</h2>
-            <div id="release-info">{this.state.album.releaseInfo}</div>
+            <div id="release-info">{this.state.album.year} {this.state.album.label}</div>
           </div>
          </section>
+         <table id="song-list">
+           <colgroup>
+             <col id="song-number-column" />
+             <col id="song-title-column" />
+             <col id="song-duration-culumn" />
+           </colgroup>
+           <tbody>
+           </tbody>
+        </table>
       </section>
     );
   }
