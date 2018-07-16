@@ -62,13 +62,16 @@ handleSongClick(song) {
              <col id="song-duration-culumn" />
            </colgroup>
            <tbody>
+
              {
                this.state.album.songs.map( (song, index) =>
-                 <Link to={`/album/${this.state.album.slug}`} key={index}>
-                   <tr className="song" key={index} onClick={() => this.handleSongClick(song)} >
-                     <span className="icon ion-play"></span> {index + 1} {song.title} {song.duration}
-                   </tr>
-                 </Link>
+                 <tr className="song" key={index} onClick={() => this.handleSongClick(song)} >
+                   <ion-icon name="play"></ion-icon>
+                   <td>{index + 1}</td>
+                   <td>{song.title}</td>
+                   <td>{song.duration}</td>
+                 </tr>
+
               )
              }
            </tbody>
