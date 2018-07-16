@@ -64,14 +64,12 @@ handleSongClick(song) {
            <tbody>
              {
                this.state.album.songs.map( (song, index) =>
-                 <Link to={`/album/${this.state.album.slug}`} key={index}>
-                   <tr className="song" key={index} onClick={() => this.handleSongClick(song)} >
-                     <td>{index + 1}</td>
-                     <td>{song.title}</td>
-                     <td>{song.duration}</td>
-                   </tr>
-                 </Link>
-              )
+                 <tr className="song" key={index} onClick={() => this.handleSongClick(song)} >
+                   <td>{index + 1}</td>
+                   <td>{song.title}</td>
+                   <td>{song.duration}</td>
+                 </tr>
+                )
              }
            </tbody>
         </table>
