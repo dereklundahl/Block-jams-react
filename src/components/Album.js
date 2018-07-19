@@ -53,23 +53,20 @@ handleDisplayButton(song, index) {
   let playButton = <ion-icon name="play-circle"></ion-icon>;
   if(song === this.state.currentSong && this.state.isPlaying) {
     return pauseButton;
-  //} else if (!this.state.isPlaying && this.state.isHovered) {
-    //return playButton;
-  } else if(song !== this.state.currentSong && !this.state.isHovered) {
+  } else if (song === this.state.currentSong && !this.state.isPlaying) {
+    return playButton;
+  } else if(song !== this.state.currentSong && this.state.isHovered !== song) {
     return index + 1;
-  } else if(song !== this.state.currentSong && this.state.isHovered) {
+  } else if(song !== this.state.currentSong && this.state.isHovered === song) {
     return playButton;
   } else return index + 1;
 }
 
-handleMouseEnter(shh) {
-
-  this.setState({ isHovered: shh });
+handleMouseEnter(song) {
+  this.setState({ isHovered: song });
 }
 
-
 handleMouseLeave(song) {
-  //  if(song === this.state.currentSong) {
   this.setState({ isHovered: null });
 }
 
