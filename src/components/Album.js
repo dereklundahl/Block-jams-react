@@ -6,10 +6,6 @@ class Album extends Component {
   constructor(props) {
     super(props);
 
-  const playButton = <ion-icon name="play-circle"></ion-icon>;
-
-  const pauseButton = <ion-icon name="pause"></ion-icon>;
-
   const album = albumData.find( album => {
     return album.slug === this.props.match.params.slug
   });
@@ -18,22 +14,22 @@ class Album extends Component {
     album: album,
     currentSong: album.songs[0],
     isPlaying: false,
-    displayButton: playButton
+    //displayButton: <ion-icon name="play-circle"></ion-icon>
+
   };
   this.audioElement = document.createElement('audio');
   this.audioElement.src = album.songs[0].audioSrc
+  this.handleDisplayButton = this.handleDisplayButton.bind(this);
 }
 
 play() {
   this.audioElement.play();
   this.setState({ isPlaying: true });
-  this.setState({ displayButton: pauseButton });
 }
 
 pause() {
   this.audioElement.pause();
   this.setState({ isPlaying: false });
-  //this.setState({ displayButton: playButton });
 }
 
 setSong(song) {
@@ -51,8 +47,18 @@ handleSongClick(song) {
   }
 }
 
-handleMouseEnter(song) {
-  console.log("the mouse has entered");
+handleDisplayButton(song, index) {
+  let pauseButton = <ion-icon name="pause"></ion-icon>;
+  let playButton = <ion-icon name="play-circle"></ion-icon>;
+  if(song === this.state.currentSong && this.state.isPlaying) {
+    return pauseButton;
+  } else if (song === this.state.currentSong && !this.state.isPlaying) {
+    return playButton;
+  } else return index + 1;
+}
+
+handleMouseEnter(song, index) {
+  this.handleDisplayButton(song, index);
 }
 
 handleMouseLeave(song) {
@@ -79,10 +85,10 @@ handleMouseLeave(song) {
            <tbody>
 
              {
+
                this.state.album.songs.map( (song, index) =>
                  <tr className="song" key={index} onClick={() => this.handleSongClick(song)} onMouseEnter={() => this.handleMouseEnter(song)} onMouseLeave={() => this.handleMouseLeave(song)} >
-                   <td>{this.state.displayButton}</td>
-                   <td>{index + 1}</td>
+                   <td>{this.handleDisplayButton(song, index)}</td>
                    <td>{song.title}</td>
                    <td>{song.duration}</td>
                  </tr>
