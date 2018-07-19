@@ -14,7 +14,8 @@ class Album extends Component {
     album: album,
     currentSong: album.songs[0],
     isPlaying: false,
-    //displayButton: <ion-icon name="play-circle"></ion-icon>
+    isHovered: null
+
 
   };
   this.audioElement = document.createElement('audio');
@@ -52,24 +53,26 @@ handleDisplayButton(song, index) {
   let playButton = <ion-icon name="play-circle"></ion-icon>;
   if(song === this.state.currentSong && this.state.isPlaying) {
     return pauseButton;
-  } else if (song === this.state.currentSong && !this.state.isPlaying) {
+  //} else if (!this.state.isPlaying && this.state.isHovered) {
+    //return playButton;
+  } else if(song !== this.state.currentSong && !this.state.isHovered) {
+    return index + 1;
+  } else if(song !== this.state.currentSong && this.state.isHovered) {
     return playButton;
   } else return index + 1;
 }
 
-handleMouseEnter(song, index) {
-  let pauseButton = <ion-icon name="pause"></ion-icon>;
-  let playButton = <ion-icon name="play-circle"></ion-icon>;
-  if(song === this.state.currentSong && this.state.isPlaying) {
-    return pauseButton;
-  } else if(song === this.state.currentSong && !this.state.isPlaying) {
-    return playButton;
-  }
+handleMouseEnter(shh) {
+
+  this.setState({ isHovered: shh });
 }
 
+
 handleMouseLeave(song) {
-  console.log("the mouse has left");
+  //  if(song === this.state.currentSong) {
+  this.setState({ isHovered: null });
 }
+
 
   render() {
     return (
@@ -93,7 +96,7 @@ handleMouseLeave(song) {
              {
 
                this.state.album.songs.map( (song, index) =>
-                 <tr className="song" key={index} onClick={() => this.handleSongClick(song)} onMouseEnter={() => this.handleDisplayButton(song, index)} onMouseLeave={() => this.handleDisplayButton(song, index)} >
+                 <tr className="song" key={index} onClick={() => this.handleSongClick(song)} onMouseEnter={() => this.handleMouseEnter(song)} onMouseLeave={() => this.handleMouseLeave(song)} >
                    <td>{this.handleDisplayButton(song, index)}</td>
                    <td>{song.title}</td>
                    <td>{song.duration}</td>
