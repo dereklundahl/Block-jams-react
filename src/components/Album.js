@@ -58,7 +58,13 @@ handleDisplayButton(song, index) {
 }
 
 handleMouseEnter(song, index) {
-  this.handleDisplayButton(song, index);
+  let pauseButton = <ion-icon name="pause"></ion-icon>;
+  let playButton = <ion-icon name="play-circle"></ion-icon>;
+  if(song === this.state.currentSong && this.state.isPlaying) {
+    return pauseButton;
+  } else if(song === this.state.currentSong && !this.state.isPlaying) {
+    return playButton;
+  }
 }
 
 handleMouseLeave(song) {
@@ -87,7 +93,7 @@ handleMouseLeave(song) {
              {
 
                this.state.album.songs.map( (song, index) =>
-                 <tr className="song" key={index} onClick={() => this.handleSongClick(song)} onMouseEnter={() => this.handleMouseEnter(song)} onMouseLeave={() => this.handleMouseLeave(song)} >
+                 <tr className="song" key={index} onClick={() => this.handleSongClick(song)} onMouseEnter={() => this.handleDisplayButton(song, index)} onMouseLeave={() => this.handleDisplayButton(song, index)} >
                    <td>{this.handleDisplayButton(song, index)}</td>
                    <td>{song.title}</td>
                    <td>{song.duration}</td>
