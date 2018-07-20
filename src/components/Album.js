@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-//import { Link } from 'react-router-dom';
 import albumData from './../data/albums';
+import PlayerBar from './PlayerBar';
 
 class Album extends Component {
   constructor(props) {
@@ -48,6 +48,14 @@ handleSongClick(song) {
   }
 }
 
+handlePrevClick() {
+  const currentIndex = this.state.album.songs.findIndex(song => this.state.currentSong === song);
+  const newIndex = Math.max(0, currentIndex -1);
+  const newSong = this.state.album.songs[newIndex];
+  this.setSong(newSong);
+  this.play();
+}
+
 handleDisplayButton(song, index) {
   let pauseButton = <ion-icon name="pause"></ion-icon>;
   let playButton = <ion-icon name="play-circle"></ion-icon>;
@@ -92,7 +100,7 @@ handleMouseLeave(song) {
 
              {
 
-               this.state.album.songs.map( (song, index) => 
+               this.state.album.songs.map( (song, index) =>
                  <tr className="song" key={index} onClick={() => this.handleSongClick(song)} onMouseEnter={() => this.handleMouseEnter(song)} onMouseLeave={() => this.handleMouseLeave(song)} >
                    <td>{this.handleDisplayButton(song, index)}</td>
                    <td>{song.title}</td>
@@ -102,6 +110,12 @@ handleMouseLeave(song) {
              }
            </tbody>
         </table>
+        <PlayerBar
+          isPlaying={this.state.isPlaying}
+          currentSong={this.state.currentSong}
+          handleSongClick={() => this.handleSongClick(this.state.currentSong)}
+          handlePrevClick={() => this.handlePrevClick()}
+        />
       </section>
     );
   }
