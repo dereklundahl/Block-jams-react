@@ -103,11 +103,11 @@ handleVolumeChange(e) {
 }
 
 handleVolumeHighClick() {
-  this.setState({ currentVolume: 1 })
+  this.setState({ currentVolume: 100 })
 }
 
 handleVolumeLowClick() {
-  this.setState({ currentVolume: 0.2 })
+  this.setState({ currentVolume: 25 })
 }
 
 handleDisplayButton(song, index) {
