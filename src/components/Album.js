@@ -15,7 +15,7 @@ class Album extends Component {
     currentSong: album.songs[0],
     currentTime: 0,
     duration: album.songs[0].duration,
-    currentVolume: null,
+    currentVolume: 100,
     isPlaying: false,
     isHovered: null
   };
@@ -103,10 +103,12 @@ handleVolumeChange(e) {
 }
 
 handleVolumeHighClick() {
+  console.log("Clicking on high volume");
   this.setState({ currentVolume: 100 })
 }
 
 handleVolumeLowClick() {
+  console.log("clicking on low volume");
   this.setState({ currentVolume: 25 })
 }
 
