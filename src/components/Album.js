@@ -101,17 +101,20 @@ handleVolumeChange(e) {
   this.audioElement.volume = newVolume;
   this.setState({ currentVolume: newVolume })
 }
-/*
-handleVolumeHighClick() {
-  console.log("Clicking on high volume");
-  this.setState({ currentVolume: 100 })
+
+formatTime(time) {
+  let sec = Math.round(time % 60);
+  //let formattedSec = sec.toPrecision(2);
+  let min = Math.floor(time/60);
+  if(time === NaN) {
+    return "-:--";
+  } else if (sec <= 9) {
+    return min.toString() +':' + '0'+sec.toString();
+  } else {
+    return min.toString() +':' +sec.toString();
+  }
 }
 
-handleVolumeLowClick() {
-  console.log("clicking on low volume");
-  this.setState({ currentVolume: 25 })
-}
-*/
 handleDisplayButton(song, index) {
   let pauseButton = <ion-icon name="pause"></ion-icon>;
   let playButton = <ion-icon name="play-circle"></ion-icon>;
@@ -160,7 +163,7 @@ handleMouseLeave(song) {
                  <tr className="song" key={index} onClick={() => this.handleSongClick(song)} onMouseEnter={() => this.handleMouseEnter(song)} onMouseLeave={() => this.handleMouseLeave(song)} >
                    <td>{this.handleDisplayButton(song, index)}</td>
                    <td>{song.title}</td>
-                   <td>{song.duration}</td>
+                   <td>{this.formatTime(song.duration)}</td>
                  </tr>
                )
              }
@@ -177,7 +180,7 @@ handleMouseLeave(song) {
           handleNextClick={() => this.handleNextClick()}
           handleTimeChange={(e) => this.handleTimeChange(e)}
           handleVolumeChange={(e) => this.handleVolumeChange(e)}
-
+          formatTime={(time) => this.formatTime(time)}
         />
       </section>
     );
