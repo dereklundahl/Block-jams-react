@@ -15,7 +15,7 @@ class Album extends Component {
     currentSong: album.songs[0],
     currentTime: 0,
     duration: album.songs[0].duration,
-    currentVolume: 100,
+    currentVolume: 1,
     isPlaying: false,
     isHovered: null
   };
@@ -97,11 +97,11 @@ handleTimeChange(e) {
 }
 
 handleVolumeChange(e) {
-  const newVolume = this.audioElement.volume * e.target.value;
-  this.audioElement.currentVolume = newVolume;
+  const newVolume = e.target.value;
+  this.audioElement.volume = newVolume;
   this.setState({ currentVolume: newVolume })
 }
-
+/*
 handleVolumeHighClick() {
   console.log("Clicking on high volume");
   this.setState({ currentVolume: 100 })
@@ -111,7 +111,7 @@ handleVolumeLowClick() {
   console.log("clicking on low volume");
   this.setState({ currentVolume: 25 })
 }
-
+*/
 handleDisplayButton(song, index) {
   let pauseButton = <ion-icon name="pause"></ion-icon>;
   let playButton = <ion-icon name="play-circle"></ion-icon>;
@@ -177,8 +177,7 @@ handleMouseLeave(song) {
           handleNextClick={() => this.handleNextClick()}
           handleTimeChange={(e) => this.handleTimeChange(e)}
           handleVolumeChange={(e) => this.handleVolumeChange(e)}
-          handleVolumeHighClick={() => this.handleVolumeHighClick()}
-          handleVolumeLowClick={() => this.handleVolumeLowClick()}
+
         />
       </section>
     );
