@@ -9,3 +9,10 @@
   margin-left: 900px;
   width: 500px;
 }
+#song-list {
+  margin-left: 150px;
+  border: solid black 1px;
+}
+PlayerBar {
+  background-color: lightGray;
+}
