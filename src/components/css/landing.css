@@ -1,0 +1,37 @@
+body {
+  background-image: url("../css-images/css-backgrounds3.jpg");
+  opacity: .75;
+  width: 90%;
+  mrgin: 0 auto;
+  font-family: arial;
+  font-size: 40px;
+  font-family:  'Domine', serif;
+
+}
+.landing {
+  margin-left: 700px;
+  width: 600px;
+  height: 550px;
+  grid-template: repeat(10, 1fr) / repeat(10, 1fr);
+  grid-gap: 10px 10px;
+  background-color: lightGray;
+  font-family:  'Domine', serif;
+
+  border-radius: 10px;
+
+}
+.selling-points {
+  grid-column: 4 / span 7;
+  grid-row: 3 / 9;
+  margin: 50px;
+  font-family:  'Domine', serif;
+
+}
+h2 {
+  font-size: 30px;
+  font-family:  'Domine', serif;
+}
+p {
+  font-size: 20px;
+  font-family: 'Rock Salt', cursive;
+}

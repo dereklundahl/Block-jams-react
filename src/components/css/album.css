@@ -1,0 +1,11 @@
+.album {
+  margin-left: 670px;
+}
+.song-list {
+  margin-left: 900px;
+}
+.song {
+  background-color: lightGray;
+  margin-left: 900px;
+  width: 500px;
+}
