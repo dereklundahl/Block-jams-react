@@ -1,10 +1,7 @@
 .player-bar {
-  background-color: pink;
+  background-color: CadetBlue;
+  width: 300px;
+  margin-left: 150px;
+  border: solid black 1px;
 
-}
-#buttons {
-  background-color: pink;
-}
-# time-control {
-  background-color: pink;
 }
